@@ -8,6 +8,7 @@ Python Web Application example using serverless architecture or amazon web servi
 * Bootstrap 4
 * Jinja
 
+
 ### Infrastructure
 * Amazon Lambda
 * Amazon API Gateway
