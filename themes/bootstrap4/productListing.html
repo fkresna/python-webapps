@@ -1,9 +1,27 @@
 {% extends "template.html" %}
 
 {% block title %}
-Product List
+{{ title }}
 {% endblock %}
 
 {% block content %}
-Product List
+<h1>{{ title }}</h1>
+<table>
+	<tr>
+		<th>Code</th>
+		<th>Name</th>
+		<th>Cost</th>
+		<th>Description</th>
+		<th>Inventory in Hand</th>
+	</tr>
+	{% for product in products %}
+	<tr>
+		<td><a href="{{ apiurl }}products/{{ product.code }}">{{ product.code }}</td>
+		<td>{{ product.name }}</td>
+		<td>{{ product.cost }}</td>
+		<td>{{ product.description }}</td>
+		<td>{{ product.inventory_on_hand }}</td>
+	</tr>
+	{% endfor %}
+</table>
 {% endblock %}
