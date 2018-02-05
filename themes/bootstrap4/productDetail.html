@@ -5,5 +5,24 @@ Product List
 {% endblock %}
 
 {% block content %}
+<script>
+var urlParams = new URLSearchParams(window.location.search);
+
+if(urlParams.has('code')) {
+	code = urlParams.get('code');
+} else {
+	code = 1
+}
+
+$.get( "{{ apiurl }}/products/".code."/detail", function( data ) {
+  $( "body" )
+    .append( "Code: " + data.code ) 
+    .append( "Name: " + data.name )
+    .append( "Cost" + data.cost)
+    .append( "Description" + data.description)
+    .append( "Inventory" + data.inventory_on_hand)
+    ; 
+}, "json" );
+</script>
 Product List
 {% endblock %}
