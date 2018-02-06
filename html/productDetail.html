@@ -45,28 +45,36 @@ Product List
 
       <div class="starter-template">
         
-<script>
-var urlParams = new URLSearchParams(window.location.search);
-
-if(urlParams.has('code')) {
-	code = urlParams.get('code');
-} else {
-	code = 1
-}
-
-$.get( "https://7a9dk2hyme.execute-api.us-east-1.amazonaws.com/api//products/".code."/detail", function( data ) {
-  $( "body" )
-    .append( "Code: " + data.code ) 
-    .append( "Name: " + data.name )
-    .append( "Cost" + data.cost)
-    .append( "Description" + data.description)
-    .append( "Inventory" + data.inventory_on_hand)
-    ; 
-}, "json" );
-</script>
-Product List
+<h1>Product List</h1>
 
       </div>
+
+        
+<form>
+	<div class="form-group">
+		<label for="code">Product Code</label>
+		<input type="text" class="form-control" id="code" name="code" disabled>
+	</div>
+	<div class="form-group">
+		<label for="name">Product Name</label>
+		<input type="text" class="form-control" id="name" name="name" disabled>
+	</div>
+	<div class="form-group">
+		<label for="cost">Cost</label>
+		<input type="text" class="form-control" id="cost" name="cost" disabled>
+	</div>
+	<div class="form-group">
+		<label for="code">Description</label>
+		<input type="text" class="form-control" id="description" name="description" disabled>
+	</div>
+	<div class="form-group">
+		<label for="code">Inventory On Hand</label>
+		<input type="text" class="form-control" id="inventory_on_hand" name="inventory_on_hand" disabled>
+	</div>
+	<button type="submit" class="btn btn-primary">Purchase</button>
+</form>
+
+
 
     </main><!-- /.container -->
 
@@ -74,7 +82,31 @@ Product List
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+
+
+<script>
+var urlParams = new URLSearchParams(window.location.search);
+var code = 1;
+if(urlParams.has('code')) {
+	code = urlParams.get('code');
+}
+var url = "https://7a9dk2hyme.execute-api.us-east-1.amazonaws.com/api/products/" + code + "/detail";
+
+$.get( url, function( data ) {
+    $('input[name=code]').val(data.code);
+    $('input[name=name]').val(data.name);
+    $('input[name=cost]').val(data.cost);
+    $('input[name=description]').val(data.description);
+    $('input[name=inventory_on_hand]').val(data.inventory_on_hand);
+    if (data.inventory_on_hand <= 0) {
+    	$("button[type=submit]").attr("disabled", "disabled");	
+    }
+}, "json" );
+</script>
+
 </body></html>

@@ -15,7 +15,7 @@ def productListing():
 def productD1(code):
 	return productDetail(code)
 
-@app.route('/products/{code}/detail')
+@app.route('/products/{code}/detail',cors=True)
 def productD2(code):
 	return productDetail(code)
 

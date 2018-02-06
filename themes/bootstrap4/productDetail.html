@@ -5,24 +5,56 @@ Product List
 {% endblock %}
 
 {% block content %}
+<h1>Product List</h1>
+{% endblock %}
+
+{% block content2 %}
+<form>
+	<div class="form-group">
+		<label for="code">Product Code</label>
+		<input type="text" class="form-control" id="code" name="code" disabled>
+	</div>
+	<div class="form-group">
+		<label for="name">Product Name</label>
+		<input type="text" class="form-control" id="name" name="name" disabled>
+	</div>
+	<div class="form-group">
+		<label for="cost">Cost</label>
+		<input type="text" class="form-control" id="cost" name="cost" disabled>
+	</div>
+	<div class="form-group">
+		<label for="code">Description</label>
+		<input type="text" class="form-control" id="description" name="description" disabled>
+	</div>
+	<div class="form-group">
+		<label for="code">Inventory On Hand</label>
+		<input type="text" class="form-control" id="inventory_on_hand" name="inventory_on_hand" disabled>
+	</div>
+	<button type="submit" class="btn btn-primary">Purchase</button>
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+
+
 <script>
 var urlParams = new URLSearchParams(window.location.search);
-
+var code = 1;
 if(urlParams.has('code')) {
 	code = urlParams.get('code');
-} else {
-	code = 1
 }
+var url = "{{ apiurl }}products/" + code + "/detail";
 
-$.get( "{{ apiurl }}/products/".code."/detail", function( data ) {
-  $( "body" )
-    .append( "Code: " + data.code ) 
-    .append( "Name: " + data.name )
-    .append( "Cost" + data.cost)
-    .append( "Description" + data.description)
-    .append( "Inventory" + data.inventory_on_hand)
-    ; 
+$.get( url, function( data ) {
+    $('input[name=code]').val(data.code);
+    $('input[name=name]').val(data.name);
+    $('input[name=cost]').val(data.cost);
+    $('input[name=description]').val(data.description);
+    $('input[name=inventory_on_hand]').val(data.inventory_on_hand);
+    if (data.inventory_on_hand <= 0) {
+    	$("button[type=submit]").attr("disabled", "disabled");	
+    }
 }, "json" );
 </script>
-Product List
 {% endblock %}
