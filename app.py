@@ -1,4 +1,5 @@
 from chalice import Chalice
+import boto3
 
 app = Chalice(app_name='pythonwebapps')
 
@@ -19,9 +20,26 @@ def productD1(code):
 def productD2(code):
 	return productDetail(code)
 
-@app.route('/products/{code}/purchase',methods=['POST'])
+@app.route('/products/{code}/purchase',methods=['POST'],content_types=['application/x-www-form-urlencoded'])
 def purchase(code):
-	return 'purchase'
+  '''
+  dynamodb = boto3.resource("dynamodb", region_name='us-east-2')
+  table = dynamodb.Table('member')
+  response = table.put_item(
+    Item={
+      'id':
+      'datetime':
+      'name':
+      'email':
+      'phone':
+      'billing_address':
+      'shipping_address':
+      'code':
+      'quatity':
+    }
+  )
+  '''
+  return request.json_body
 
 	
 

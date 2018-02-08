@@ -4,10 +4,12 @@ Python Web Application example using serverless architecture or amazon web servi
 
 ### Software
 * Python3
-* Chalice
 * Bootstrap 4
-* Jinja
 
+### Python library
+* Python Serverless Microframework for AWS, [Chalice](https://github.com/aws/chalice)
+* Python Template Engine, [Jinja](http://jinja.pocoo.org/)
+* AWS SDK for Python, [BOTO3](https://github.com/boto/boto3)
 
 ### Infrastructure
 * Amazon Lambda
