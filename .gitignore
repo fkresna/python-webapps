@@ -1,6 +1,3 @@
-.chalice/deployments/
-.chalice/venv/
 .DS_Store
-.chalice/
 __pycache__/
 themes/bootstrap4/.DS_Store
