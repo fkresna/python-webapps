@@ -56,38 +56,43 @@ Product Purchase
 		<label for="cEmail">Customer Email</label>
 		<input type="text" class="form-control" id="cEmail" name="cEmail">
 	</div>
-		<div class="form-group">
+	<div class="form-group">
 		<label for="cPhone">Customer Phone</label>
 		<input type="text" class="form-control" id="cPhone" name="cPhone">
 	</div>
-		<div class="form-group">
+	<div class="form-group">
 		<label for="cShipping">Shipping Address</label>
 		<input type="text" class="form-control" id="cShipping" name="cShipping">
 	</div>
-		<div class="form-group">
+	<div class="form-group">
 		<label for="cBilling">Billing Adress</label>
 		<input type="text" class="form-control" id="cBilling" name="cBilling">
+	</div>
+	<div>
+		<label for="quantity">Quantity</label>
+		<input type="text" class="form-control" id="quantity" name="quantity">
+	</div>
 	<div class="form-group">
 		<label for="code">Product Code</label>
-		<input type="text" class="form-control" id="code" name="code" disabled>
+		<input type="text" class="form-control" id="code" name="code" readonly>
 	</div>
 	<div class="form-group">
 		<label for="name">Product Name</label>
-		<input type="text" class="form-control" id="name" name="name" disabled>
+		<input type="text" class="form-control" id="name" name="name" readonly>
 	</div>
 	<div class="form-group">
 		<label for="cost">Cost</label>
-		<input type="text" class="form-control" id="cost" name="cost" disabled>
+		<input type="text" class="form-control" id="cost" name="cost" readonly>
 	</div>
 	<div class="form-group">
 		<label for="code">Description</label>
-		<input type="text" class="form-control" id="description" name="description" disabled>
+		<input type="text" class="form-control" id="description" name="description" readonly>
 	</div>
 	<div class="form-group">
 		<label for="code">Inventory On Hand</label>
-		<input type="text" class="form-control" id="inventory_on_hand" name="inventory_on_hand" disabled>
+		<input type="text" class="form-control" id="inventory_on_hand" name="inventory_on_hand" readonly>
 	</div>
-	<button type="submit" class="btn btn-primary">Purchase</button>
+	<input type="submit" class="btn btn-primary" value="Purchase">
 </form>
 
 
@@ -115,8 +120,8 @@ $.get( url, function( data ) {
     $('input[name=name]').val(data.name);
     $('input[name=cost]').val(data.cost);
     $('input[name=description]').val(data.description);
-    $('input[name=inventory_on_hand]').val(data.inventory_on_hand);
-    if (data.inventory_on_hand <= 0) {
+    $('input[name=inventory_on_hand]').val(data.inv_on_hand);
+    if (data.inv_on_hand <= 0) {
       $("button[type=submit]").attr("disabled", "disabled");  
     }
     $('form[name=formPurchase]').attr('action','https://7a9dk2hyme.execute-api.us-east-1.amazonaws.com/api/products/'+ code+ '/purchase');
